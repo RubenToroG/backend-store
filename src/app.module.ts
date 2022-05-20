@@ -34,10 +34,10 @@ import config from './config';
     {
       provide: 'TASK',
       useFactory: async (http: HttpService) => {
-        const task = await http
-          .get('https://jsonplaceholder.typicode.com/todos')
-          .toPromise();
-        return task.data;
+        // const task = await http
+        //   .get('https://jsonplaceholder.typicode.com/todos')
+        //   .toPromise();
+        // return task.data;
       },
       inject: [HttpService],
     },

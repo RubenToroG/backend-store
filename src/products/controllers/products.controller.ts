@@ -15,10 +15,7 @@ import { ApiTags, ApiOperation } from '@nestjs/swagger';
 
 import { ParseIntPipe } from '../../common/parse-int.pipe';
 import { ProductsService } from './../services/products.service';
-import {
-  CreateProductDto,
-  UpdateProductDto,
-} from 'src/products/dtos/products.dtos';
+import { CreateProductDto, UpdateProductDto } from './../dtos/products.dtos';
 
 @ApiTags('products')
 @Controller('products')
