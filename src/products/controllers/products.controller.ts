@@ -17,20 +17,19 @@ import { ParseIntPipe } from '../../common/parse-int.pipe';
 import { ProductsService } from './../services/products.service';
 import { CreateProductDto, UpdateProductDto } from './../dtos/products.dtos';
 
-@ApiTags('products')
+@ApiTags('Products')
 @Controller('products')
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
   @Get()
   @ApiOperation({ summary: 'List of products' })
-  getProducts(
-    @Query('limit') limit = 100,
-    @Query('offset') offset = 0,
-    @Query('brand') brand: string,
-  ) {
+  getProducts() {
     return this.productsService.findAll();
   }
+  // @Query('limit') limit = 100,
+  // @Query('offset') offset = 0,
+  // @Query('brand') brand: string,
 
   @Get('filter')
   getProductFilter() {
@@ -40,6 +39,7 @@ export class ProductsController {
   }
 
   @Get(':productId')
+  @ApiOperation({ summary: 'Consult one product for ID' })
   @HttpCode(HttpStatus.ACCEPTED)
   getProduct(@Param('productId', ParseIntPipe) productId: number) {
     return this.productsService.findOne(productId);
