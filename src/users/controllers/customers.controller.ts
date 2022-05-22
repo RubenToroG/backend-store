@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
@@ -9,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 
+import { CreateCustomerDto } from '../dtos/customer.dto';
 import { CustomersService } from '../services/customers.service';
 
 @ApiTags('Customers')
@@ -19,5 +21,10 @@ export class CustomersController {
   @Get()
   findAll() {
     return this.customersService.findAll();
+  }
+
+  @Post()
+  create_(@Body() payload: CreateCustomerDto) {
+    return this.customersService.create(payload);
   }
 }
