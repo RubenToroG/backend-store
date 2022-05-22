@@ -4,27 +4,25 @@ import {
   Entity,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
 
+import { User } from './users.entity';
+
 @Entity()
-export class Product {
+export class Customer {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar', length: 255, unique: true })
+  @Column({ type: 'varchar', length: 100 })
   name: string;
 
-  @Column({ type: 'text' })
-  description: string;
+  @Column({ type: 'varchar', length: 100 })
+  lastName: string;
 
-  @Column({ type: 'int' })
-  price: number;
-
-  @Column({ type: 'int' })
-  stock: number;
-
-  @Column({ type: 'varchar' })
-  image: string;
+  @Column({ type: 'varchar', length: 100 })
+  phone: string;
 
   @CreateDateColumn({
     type: 'timestamptz',
@@ -37,4 +35,8 @@ export class Product {
     default: () => 'CURRENT_TIMESTAMP',
   })
   updateAt: Date;
+
+  @OneToOne(() => User, (user) => user.customer, { nullable: true })
+  @JoinColumn()
+  user: User;
 }
