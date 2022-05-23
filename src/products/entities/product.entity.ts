@@ -4,7 +4,10 @@ import {
   Entity,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToMany,
 } from 'typeorm';
+
+import { Invoice } from 'src/invoices/entities/invoices.entity';
 
 @Entity()
 export class Product {
@@ -37,4 +40,7 @@ export class Product {
     default: () => 'CURRENT_TIMESTAMP',
   })
   updateAt: Date;
+
+  @ManyToMany(() => Invoice, (invoice) => invoice.products)
+  invoice: Invoice[];
 }

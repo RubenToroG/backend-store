@@ -6,9 +6,12 @@ import {
   UpdateDateColumn,
   OneToOne,
   ManyToOne,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 
 import { User } from 'src/users/entities/users.entity';
+import { Product } from 'src/products/entities/product.entity';
 
 @Entity()
 export class Invoice {
@@ -38,4 +41,8 @@ export class Invoice {
     default: () => 'CURRENT_TIMESTAMP',
   })
   updateAt: Date;
+
+  @ManyToMany(() => Product, (product) => product.invoice)
+  @JoinTable()
+  products: Product[];
 }

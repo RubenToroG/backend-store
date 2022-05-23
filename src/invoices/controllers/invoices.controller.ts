@@ -23,6 +23,11 @@ export class InvoicesController {
     return this.invoiceService.findAll();
   }
 
+  @Get(':id')
+  get(@Param('id', ParseIntPipe) id: number) {
+    return this.invoiceService.findOne(id);
+  }
+
   @Post()
   create(@Body() payload: CreateInvoiceDto) {
     return this.invoiceService.create(payload);

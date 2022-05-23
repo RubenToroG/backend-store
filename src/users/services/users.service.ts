@@ -20,7 +20,7 @@ export class UsersService {
   }
 
   async findOne(id: number) {
-    const user = await this.userRepo.findOne({
+    const user = await this.userRepo.findOne(id, {
       relations: ['invoice'],
     });
     if (!user) {

@@ -1,7 +1,7 @@
 import {
   IsString,
   IsNumber,
-  IsUrl,
+  IsArray,
   IsNotEmpty,
   IsPositive,
 } from 'class-validator';
@@ -27,6 +27,11 @@ export class CreateInvoiceDto {
   @IsNotEmpty()
   @ApiProperty()
   readonly userId: number;
+
+  @IsNotEmpty()
+  @IsArray()
+  @ApiProperty()
+  readonly productsIds: number[];
 }
 
 export class UpdateInvoiceDto extends PartialType(CreateInvoiceDto) {}
