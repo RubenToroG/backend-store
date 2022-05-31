@@ -8,7 +8,7 @@ import {
   OneToMany,
 } from 'typeorm';
 
-import { Customer } from './customer.entity';
+import { Customer } from '../../users/entities/customer.entity';
 import { Invoice } from 'src/invoices/entities/invoices.entity';
 
 @Entity()

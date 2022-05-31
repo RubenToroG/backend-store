@@ -6,9 +6,8 @@ import config from './config';
 
 @Injectable()
 export class AppService {
-  constructor(
-    //@Inject('PG') private clientPg: Client,
-    //@Inject('TASK') private task: any[],
-    @Inject(config.KEY) private configService: ConfigType<typeof config>,
-  ) {}
+  // constructor() //@Inject('PG') private clientPg: Client,
+  // //@Inject('TASK') private task: any[],
+  // //@Inject(config.KEY) private configService: ConfigType<typeof config>,
+  // {}
 }

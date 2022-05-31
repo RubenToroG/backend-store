@@ -8,6 +8,7 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { ProductModule } from './products/products.module';
 import { InvoiceModule } from './invoices/invoices.module';
+import { MoviesModule } from './movies/movies.module';
 import { DatabaseModule } from './database/database.module';
 import { enviroments } from './enviroments';
 import config from './config';
@@ -29,6 +30,7 @@ import config from './config';
     InvoiceModule,
     ProductModule,
     DatabaseModule,
+    MoviesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

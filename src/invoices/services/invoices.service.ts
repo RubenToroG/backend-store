@@ -5,7 +5,7 @@ import { Repository } from 'typeorm';
 import { Invoice } from '../entities/invoices.entity';
 import { CreateInvoiceDto, UpdateInvoiceDto } from '../dtos/invoice.dto';
 import { Product } from '../../products/entities/product.entity';
-import { User } from 'src/users/entities/users.entity';
+import { User } from '../../users/entities/users.entity';
 
 @Injectable()
 export class InvoicesService {
