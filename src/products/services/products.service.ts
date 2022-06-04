@@ -33,6 +33,10 @@ export class ProductsService {
     const newProduct = this.productRepo.create(data);
     return this.productRepo.save(newProduct);
   }
+  // if(data.brandId) {
+  //   const brand = this.brandService.findOne(data.brandId);
+  //   newProduct.brand = brand;
+  // }
 
   async update(id: number, changes: UpdateProductDto) {
     const product = await this.productRepo.findOne({ id });
