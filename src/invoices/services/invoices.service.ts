@@ -48,6 +48,37 @@ export class InvoicesService {
       const user = await this.userRepo.findOne(changes.userId);
       invoice.user = user;
     }
+    if (changes.productsIds) {
+      const products = await this.productRepo.findByIds(changes.productsIds);
+      invoice.products = products;
+    }
     return this.invoiceRepo.save(invoice);
+  }
+
+  async removeProductByInvoice(invoiceId: number, productId: number) {
+    const invoice = await this.invoiceRepo.findOne(invoiceId, {
+      relations: ['products'],
+    });
+    invoice.products = invoice.products.filter((item) => item.id !== productId);
+    return this.invoiceRepo.save(invoice);
+  }
+
+  async addProductToInvoice(invoiceId: number, productId: number) {
+    const invoice = await this.invoiceRepo.findOne(invoiceId, {
+      relations: ['products'],
+    });
+    if (!invoice) {
+      throw new NotFoundException(`Invoice #${invoiceId} not found`);
+    }
+    const product = await this.productRepo.findOne(productId);
+    if (!product) {
+      throw new NotFoundException(`Product #${productId} not found`);
+    }
+    invoice.products.push(product);
+    return this.invoiceRepo.save(invoice);
+  }
+
+  remove(id: number) {
+    return this.invoiceRepo.delete(id);
   }
 }
