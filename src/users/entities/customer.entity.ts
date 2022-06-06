@@ -1,3 +1,4 @@
+import { Invoice } from 'src/invoices/entities/invoices.entity';
 import {
   PrimaryGeneratedColumn,
   Column,
@@ -6,6 +7,7 @@ import {
   UpdateDateColumn,
   OneToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 
 import { User } from '../entities/users.entity';
@@ -39,4 +41,7 @@ export class Customer {
   @OneToOne(() => User, (user) => user.customer, { nullable: true })
   @JoinColumn()
   user: User;
+
+  @OneToMany(() => Invoice, (invoice) => invoice.customer)
+  invoices: Invoice[];
 }

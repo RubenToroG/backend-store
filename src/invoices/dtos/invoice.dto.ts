@@ -28,6 +28,11 @@ export class CreateInvoiceDto {
   @ApiProperty()
   readonly userId: number;
 
+  @IsNumber()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly customerId: number;
+
   @IsNotEmpty()
   @IsArray()
   @ApiProperty()

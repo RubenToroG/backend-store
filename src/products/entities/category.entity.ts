@@ -5,31 +5,16 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToMany,
-  JoinTable,
 } from 'typeorm';
-
-import { Invoice } from 'src/invoices/entities/invoices.entity';
-import { Category } from './category.entity';
+import { Product } from './product.entity';
 
 @Entity()
-export class Product {
+export class Category {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ type: 'varchar', length: 255, unique: true })
   name: string;
-
-  @Column({ type: 'text' })
-  description: string;
-
-  @Column({ type: 'int' })
-  price: number;
-
-  @Column({ type: 'int' })
-  stock: number;
-
-  @Column({ type: 'varchar' })
-  image: string;
 
   @CreateDateColumn({
     type: 'timestamptz',
@@ -43,7 +28,6 @@ export class Product {
   })
   updateAt: Date;
 
-  @ManyToMany(() => Category, (category) => category.products)
-  @JoinTable()
-  categories: Category[];
+  @ManyToMany(() => Product, (product) => product.categories)
+  products: Product[];
 }

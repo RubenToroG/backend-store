@@ -41,24 +41,24 @@ export class InvoicesController {
     return this.invoiceService.update(id, payload);
   }
 
-  @Put(':id/product/:productId')
-  addProductToInvoice(
-    @Param('id', ParseIntPipe) id: number,
-    @Param('productId', ParseIntPipe) productId: number,
-  ) {
-    return this.invoiceService.addProductToInvoice(id, productId);
-  }
+  // @Put(':id/product/:productId')
+  // addProductToInvoice(
+  //   @Param('id', ParseIntPipe) id: number,
+  //   @Param('productId', ParseIntPipe) productId: number,
+  // ) {
+  //   return this.invoiceService.addProductToInvoice(id, productId);
+  // }
 
   @Delete(':id')
   delete(@Param('id', ParseIntPipe) id: number) {
     return this.invoiceService.remove(id);
   }
 
-  @Delete(':id/product/:productId')
-  deleteProduct(
-    @Param('id', ParseIntPipe) id: number,
-    @Param('productId', ParseIntPipe) productId: number,
-  ) {
-    return this.invoiceService.removeProductByInvoice(id, productId);
-  }
+  // @Delete(':id/product/:productId')
+  // deleteProduct(
+  //   @Param('id', ParseIntPipe) id: number,
+  //   @Param('productId', ParseIntPipe) productId: number,
+  // ) {
+  //   return this.invoiceService.removeProductByInvoice(id, productId);
+  // }
 }

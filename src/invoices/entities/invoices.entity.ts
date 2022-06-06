@@ -8,10 +8,13 @@ import {
   ManyToOne,
   ManyToMany,
   JoinTable,
+  OneToMany,
 } from 'typeorm';
 
 import { User } from 'src/users/entities/users.entity';
-import { Product } from 'src/products/entities/product.entity';
+// import { Product } from 'src/products/entities/product.entity';
+import { InvoiceItems } from './invoice-product.entity';
+import { Customer } from 'src/users/entities/customer.entity';
 
 @Entity()
 export class Invoice {
@@ -42,7 +45,13 @@ export class Invoice {
   })
   updateAt: Date;
 
-  @ManyToMany(() => Product, (product) => product.invoice)
-  @JoinTable()
-  products: Product[];
+  @OneToMany(() => InvoiceItems, (item) => item.invoice)
+  items: InvoiceItems[];
+
+  @ManyToOne(() => Customer, (customer) => customer.invoices)
+  customer: Customer;
 }
+
+// @ManyToMany(() => Product, (product) => product.invoice)
+// @JoinTable()
+// products: Product[];

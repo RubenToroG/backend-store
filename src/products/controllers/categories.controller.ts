@@ -1,9 +1,23 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpCode,
+  Param,
+  ParseIntPipe,
+  HttpStatus,
+} from '@nestjs/common';
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { CategoryService } from '../services/category.service';
 
+@ApiTags('Categories')
 @Controller('categories')
 export class CategoriesController {
-  @Get(':id/products/:productId')
-  getCategory(@Param('productId') productId: string, @Param('id') id: string) {
-    return `product ${productId} and ${id}`;
+  constructor(private categoryService: CategoryService) {}
+
+  @Get(':categoryId')
+  @ApiOperation({ summary: 'List of categories' })
+  @HttpCode(HttpStatus.ACCEPTED)
+  getCategory(@Param('productId', ParseIntPipe) categoryId: number) {
+    return this.categoryService.findOne(categoryId);
   }
 }

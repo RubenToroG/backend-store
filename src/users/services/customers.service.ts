@@ -13,6 +13,14 @@ export class CustomersService {
     private userService: UsersService,
   ) {}
 
+  async findOne(id: number) {
+    const customer = await this.customerRepo.findOne(id);
+    if (!customer) {
+      throw new NotFoundException(`Customer #${id} not found`);
+    }
+    return customer;
+  }
+
   findAll() {
     return this.customerRepo.find({
       relations: ['user'],
