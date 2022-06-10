@@ -13,26 +13,19 @@ export class CreateInvoiceDto {
   @ApiProperty()
   readonly number: string;
 
-  @IsString()
-  @ApiProperty()
-  readonly concept: string;
-
-  @IsNumber()
-  @IsNotEmpty()
   @IsPositive()
-  @ApiProperty()
-  readonly price: number;
-
   @IsNumber()
   @IsNotEmpty()
   @ApiProperty()
   readonly userId: number;
 
+  @IsPositive()
   @IsNumber()
   @IsNotEmpty()
   @ApiProperty()
   readonly customerId: number;
 
+  @IsPositive()
   @IsNotEmpty()
   @IsArray()
   @ApiProperty()

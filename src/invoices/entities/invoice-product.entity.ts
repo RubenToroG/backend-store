@@ -14,7 +14,7 @@ import { Product } from '../../products/entities/product.entity';
 import { Invoice } from './invoices.entity';
 
 @Entity()
-export class InvoiceItems {
+export class InvoiceProduct {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -36,6 +36,6 @@ export class InvoiceItems {
   @ManyToOne(() => Product)
   product: Product;
 
-  @ManyToOne(() => Invoice, (invoice) => invoice.items)
+  @ManyToOne(() => Invoice, (invoice) => invoice.product)
   invoice: Invoice;
 }
