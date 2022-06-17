@@ -12,7 +12,7 @@ import {
 
 import { User } from '../entities/users.entity';
 
-@Entity()
+@Entity({ name: 'customers' })
 export class Customer {
   @PrimaryGeneratedColumn()
   id: number;
@@ -27,19 +27,21 @@ export class Customer {
   phone: string;
 
   @CreateDateColumn({
+    name: 'create_at',
     type: 'timestamptz',
     default: () => 'CURRENT_TIMESTAMP',
   })
   createAt: Date;
 
   @UpdateDateColumn({
+    name: 'update_at',
     type: 'timestamptz',
     default: () => 'CURRENT_TIMESTAMP',
   })
   updateAt: Date;
 
   @OneToOne(() => User, (user) => user.customer, { nullable: true })
-  @JoinColumn()
+  @JoinColumn({ name: 'user_id' })
   user: User;
 
   @OneToMany(() => Invoice, (invoice) => invoice.customer)

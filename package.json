@@ -22,7 +22,8 @@
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "migrations:generate": "npm run typeorm -- migration:generate -n",
     "migrations:run": "npm run typeorm -- migration:run",
-    "migrations:show": "npm run typeorm -- migration:show"
+    "migrations:show": "npm run typeorm -- migration:show",
+    "migrations:drop": "npm run typeorm -- schema:drop"
   },
   "dependencies": {
     "@nestjs/axios": "0.0.7",
