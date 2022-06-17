@@ -31,13 +31,6 @@ export class ProductsController {
     return this.productsService.findAll(params);
   }
 
-  @Get('filter')
-  getProductFilter() {
-    return {
-      message: `filtro`,
-    };
-  }
-
   @Get(':productId')
   @ApiOperation({ summary: 'Consult one product for ID' })
   @HttpCode(HttpStatus.ACCEPTED)

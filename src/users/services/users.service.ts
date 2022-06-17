@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { User } from '../entities/users.entity';
-import { Order } from './../entities/order.entity';
 
 import { ProductsService } from './../../products/services/products.service';
 import { CreateUserDto, UpdateUserDto } from '../dtos/user.dto';
@@ -42,14 +41,5 @@ export class UsersService {
 
   remove(id: number) {
     return this.userRepo.delete(id);
-  }
-
-  async getOrderByUser(id: number) {
-    const user = this.userRepo.findOne({ id });
-    return {
-      date: new Date(),
-      user,
-      products: await this.productService.findAll(),
-    };
   }
 }
