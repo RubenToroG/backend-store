@@ -23,7 +23,7 @@ export class CreateCustomerDto {
   @ApiProperty()
   readonly phone: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsPositive()
   @ApiProperty()
   readonly userId: number;

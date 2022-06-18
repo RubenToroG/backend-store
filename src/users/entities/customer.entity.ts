@@ -5,9 +5,9 @@ import {
   Entity,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne,
   JoinColumn,
   OneToMany,
+  ManyToOne,
 } from 'typeorm';
 
 import { User } from '../entities/users.entity';
@@ -40,7 +40,7 @@ export class Customer {
   })
   updateAt: Date;
 
-  @OneToOne(() => User, (user) => user.customer, { nullable: true })
+  @ManyToOne(() => User, (user) => user.customer)
   @JoinColumn({ name: 'user_id' })
   user: User;
 

@@ -47,7 +47,9 @@ export class Product {
   })
   updateAt: Date;
 
-  @ManyToMany(() => Category, (category) => category.products)
+  @ManyToMany(() => Category, (category) => category.products, {
+    nullable: true,
+  })
   @JoinTable({
     name: 'products_categories',
     joinColumn: {
