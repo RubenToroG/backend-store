@@ -2,17 +2,17 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { CreateInvoiceDto, UpdateInvoiceDto } from '../dtos/invoice.dto';
 import { User } from '../../users/entities/users.entity';
 import { Customer } from 'src/users/entities/customer.entity';
 import { Invoice } from '../entities/invoices.entity';
+import { CreateInvoiceDto, UpdateInvoiceDto } from '../dtos/invoice.dto';
 
 @Injectable()
 export class InvoicesService {
   constructor(
-    @InjectRepository(Invoice) private invoiceRepo: Repository<Invoice>,
     @InjectRepository(User) private userRepo: Repository<User>,
     @InjectRepository(Customer) private customerRepo: Repository<Customer>,
+    @InjectRepository(Invoice) private invoiceRepo: Repository<Invoice>,
   ) {}
 
   findAll() {
@@ -21,7 +21,7 @@ export class InvoicesService {
 
   async findOne(id: number) {
     const invoice = await this.invoiceRepo.findOne(id, {
-      relations: ['user', 'products'],
+      relations: ['user'],
     });
     if (!invoice) {
       throw new NotFoundException(`Invoice #${id} not found`);
@@ -30,7 +30,7 @@ export class InvoicesService {
   }
 
   async create(data: CreateInvoiceDto) {
-    const newInvoice = this.invoiceRepo.create(data);
+    const newInvoice = new Invoice();
     if (data.userId) {
       const user = await this.userRepo.findOne(data.userId);
       newInvoice.user = user;

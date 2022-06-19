@@ -10,8 +10,8 @@ import {
 } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 
-import { CreateInvoiceDto, UpdateInvoiceDto } from '../dtos/invoice.dto';
 import { InvoicesService } from '../services/invoices.service';
+import { CreateInvoiceDto, UpdateInvoiceDto } from '../dtos/invoice.dto';
 
 @ApiTags('Invoices')
 @Controller('invoices')

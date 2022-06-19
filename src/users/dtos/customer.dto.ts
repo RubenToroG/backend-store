@@ -1,11 +1,4 @@
-import {
-  IsString,
-  IsEmail,
-  IsNotEmpty,
-  Length,
-  IsPositive,
-  IsOptional,
-} from 'class-validator';
+import { IsString, IsNotEmpty, IsPositive } from 'class-validator';
 import { PartialType, ApiProperty } from '@nestjs/swagger';
 
 export class CreateCustomerDto {

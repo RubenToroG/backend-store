@@ -4,7 +4,6 @@ import {
   Entity,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne,
   OneToMany,
 } from 'typeorm';
 
@@ -39,8 +38,8 @@ export class User {
   })
   updateAt: Date;
 
-  @OneToOne(() => Customer, (customer) => customer.user, { nullable: true })
-  customer: Customer;
+  @OneToMany(() => Customer, (customer) => customer.user, { nullable: true })
+  customer: Customer[];
 
   @OneToMany(() => Invoice, (invoice) => invoice.user)
   invoice: Invoice[];

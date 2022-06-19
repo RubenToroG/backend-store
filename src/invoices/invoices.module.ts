@@ -6,18 +6,18 @@ import { InvoicesService } from './services/invoices.service';
 import { Invoice } from './entities/invoices.entity';
 import { UsersModule } from 'src/users/users.module';
 import { ProductModule } from 'src/products/products.module';
-import { InvoiceProductController } from './controllers/invoice-product.controller';
-import { InvoiceProductService } from './services/invoice-product.service';
-import { InvoiceProduct } from './entities/invoice-product.entity';
+import { InvoiceItemController } from './controllers/invoice-product.controller';
+import { InvoiceItemService } from './services/invoice-product.service';
+import { InvoiceItem } from './entities/invoice-product.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Invoice, InvoiceProduct]),
+    TypeOrmModule.forFeature([Invoice, InvoiceItem]),
     UsersModule,
     ProductModule,
   ],
-  controllers: [InvoicesController, InvoiceProductController],
-  providers: [InvoicesService, InvoiceProductService],
+  controllers: [InvoicesController, InvoiceItemController],
+  providers: [InvoicesService, InvoiceItemService],
   exports: [InvoicesService, TypeOrmModule],
 })
 export class InvoiceModule {}

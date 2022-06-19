@@ -8,14 +8,17 @@ import {
   JoinColumn,
 } from 'typeorm';
 
+import { Exclude } from 'class-transformer';
+
 import { Product } from '../../products/entities/product.entity';
 import { Invoice } from './invoices.entity';
 
 @Entity({ name: 'invoices_products' })
-export class InvoiceProduct {
+export class InvoiceItem {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Exclude()
   @CreateDateColumn({
     name: 'create_at',
     type: 'timestamptz',
@@ -23,6 +26,7 @@ export class InvoiceProduct {
   })
   createAt: Date;
 
+  @Exclude()
   @UpdateDateColumn({
     name: 'update_at',
     type: 'timestamptz',
@@ -37,7 +41,7 @@ export class InvoiceProduct {
   @JoinColumn({ name: 'product_id' })
   product: Product;
 
-  @ManyToOne(() => Invoice, (invoice) => invoice.product)
+  @ManyToOne(() => Invoice, (invoice) => invoice.items)
   @JoinColumn({ name: 'invoice_id' })
   invoice: Invoice;
 }

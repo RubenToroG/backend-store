@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 
 import { Category } from './category.entity';
+// import { InvoiceItem } from 'src/invoices/entities/invoice-product.entity';
 
 @Entity({ name: 'products' })
 @Index(['price', 'stock'])
@@ -60,4 +61,7 @@ export class Product {
     },
   })
   categories: Category[];
+
+  // @OneToMany(() => InvoiceItem, (invoice) => invoice.quantity)
+  // invoice_product: InvoiceItem[];
 }
