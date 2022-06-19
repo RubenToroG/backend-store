@@ -8,7 +8,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
 
 import { InvoicesService } from '../services/invoices.service';
 import { CreateInvoiceDto, UpdateInvoiceDto } from '../dtos/invoice.dto';
