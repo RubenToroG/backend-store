@@ -19,8 +19,13 @@ export class CreateInvoiceProductDto {
   @IsPositive()
   @ApiProperty()
   readonly quantity: number;
-}
 
+  @IsNumber()
+  @IsNotEmpty()
+  @IsPositive()
+  @ApiProperty()
+  readonly discount: number;
+}
 export class UpdateInvoiceProductDto extends PartialType(
   CreateInvoiceProductDto,
 ) {}

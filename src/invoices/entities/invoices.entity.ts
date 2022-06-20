@@ -7,6 +7,7 @@ import {
   OneToMany,
   JoinColumn,
 } from 'typeorm';
+import { Exclude, Expose } from 'class-transformer';
 
 import { User } from 'src/users/entities/users.entity';
 import { InvoiceItem } from './invoice-product.entity';
@@ -39,6 +40,33 @@ export class Invoice {
   @JoinColumn({ name: 'customer_id' })
   customer: Customer;
 
+  @Exclude()
   @OneToMany(() => InvoiceItem, (item) => item.invoice)
   items: InvoiceItem[];
+
+  @Expose()
+  get products() {
+    if (this.items) {
+      return this.items
+        .filter((item) => !!item)
+        .map((item) => ({
+          ...item.product,
+          quantity: item.quantity,
+          totalPrice: item.product.price * item.quantity,
+          totalDiscount: item.discount / 100,
+          total: item.product.price * item.quantity - item.discount / 100,
+        }));
+    }
+    return [];
+  }
+
+  @Expose()
+  get total() {
+    if (this.items) {
+      return this.items
+        .filter((item) => !!item)
+        .reduce((total, item) => total + item.product.price * item.quantity, 0);
+    }
+    return 0;
+  }
 }

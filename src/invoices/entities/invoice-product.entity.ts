@@ -37,6 +37,9 @@ export class InvoiceItem {
   @Column({ type: 'int' })
   quantity: number;
 
+  @Column({ type: 'int' })
+  discount: number;
+
   @ManyToOne(() => Product)
   @JoinColumn({ name: 'product_id' })
   product: Product;

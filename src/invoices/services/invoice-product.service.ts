@@ -40,6 +40,11 @@ export class InvoiceItemService {
     } else {
       throw new Error('Quantity is required');
     }
+    if (data.discount) {
+      invoiceItem.discount = data.discount;
+    } else {
+      invoiceItem.discount = 0;
+    }
     return this.invoiceItemRepo.save(invoiceItem);
   }
 }
